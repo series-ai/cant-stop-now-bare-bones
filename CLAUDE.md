@@ -1,14 +1,16 @@
 # Minimal Template: Pixi.js v8 + React 19 + Tailwind v4
 
-The genre-neutral starting point in this kit: platform wiring (SDK boot,
-lifecycles, design-unit stage, saves) plus a throwaway demo scene, and
-nothing else. Start here when your game is not a runner or a launcher. The
-`endless-runner-template` and `launcher-template` in this repo are built on
-exactly these patterns and contain working systems to copy when you need
-them: audio buses + settings screen, an all-time leaderboard, a shop, and
-rewarded ads (which came from the npm package
-`@series-inc/run-game-helpers` — a copy-in library that also has daily
-rewards, IAP, quests, tutorial, and more).
+The genre-neutral starting point in the Can't Stop Now Jam Kit: platform
+wiring (SDK boot, lifecycles, design-unit stage, saves) plus a throwaway
+demo scene, and nothing else. Start here when your game is not a runner or
+a launcher. The kit's runner and launcher templates (standalone mirrors:
+github.com/series-ai/cant-stop-now-runner and
+github.com/series-ai/cant-stop-now-launcher) are built on exactly these
+patterns and contain working systems to copy when you need them: audio
+buses + settings screen, an all-time leaderboard, a shop, and rewarded ads
+(which came from the npm package `@series-inc/run-game-helpers` — a
+copy-in library that also has daily rewards, IAP, quests, tutorial, and
+more).
 
 ## File Structure (as-shipped)
 
@@ -52,7 +54,7 @@ rewards, IAP, quests, tutorial, and more).
 - **Palette** → the `@theme` block in `src/styles/app.css`.
 - **Orientation** → portrait is default. For landscape: `rundot init --orientation Landscape` and adjust the 9:16 media query in `app.css` (see `ADAPT:`).
 - **Save/persistence** → extend `SaveData`/`parse()` in `src/state/save.ts` and patch the new fields in `main.tsx` step 2. The boot load and lifecycle flushes are already wired.
-- **Platform systems (audio, leaderboard, shop, ads, ...)** → copy working implementations from `endless-runner-template` / `launcher-template` in this repo, or from the `@series-inc/run-game-helpers` npm package (daily rewards, IAP, quests, tutorial...). Copy the files in — never import that package at runtime.
+- **Platform systems (audio, leaderboard, shop, ads, ...)** → copy working implementations from the jam kit's runner/launcher templates (github.com/series-ai/cant-stop-now-runner, github.com/series-ai/cant-stop-now-launcher), or from the `@series-inc/run-game-helpers` npm package (daily rewards, IAP, quests, tutorial...). Copy the files in — never import that package at runtime.
 - **Game config (resolution, DPR, pixel-art)** → `DESIGN_WIDTH` in stage.ts (keep 720 unless art dictates otherwise); DPR cap / texture settings in pixiApp.ts.
 
 All intended edit points carry `ADAPT:` comments — search the source for `ADAPT:` for the full list.
@@ -86,7 +88,7 @@ After ANY recipe, run `npx tsc --noEmit` — the compiler catches leftovers (`no
 
 **"Rename the game"** — `<title>` in index.html, headings in `MainMenu.tsx` + `LoadingScreen.tsx`, `name` in package.json, `SAVE_KEY` in `src/state/save.ts`.
 
-**"Add audio / a leaderboard / a shop / rewarded ads"** — copy the working system from `endless-runner-template` or `launcher-template` in this repo (each documents its own file list in its CLAUDE.md), or copy modules from the `@series-inc/run-game-helpers` npm package. Copy files in; never import that package at runtime.
+**"Add audio / a leaderboard / a shop / rewarded ads"** — copy the working system from the jam kit's runner or launcher template (github.com/series-ai/cant-stop-now-runner, github.com/series-ai/cant-stop-now-launcher; each documents its own file list in its CLAUDE.md), or copy modules from the `@series-inc/run-game-helpers` npm package. Copy files in; never import that package at runtime.
 
 ## Verification (after scaffolding a game from this template)
 

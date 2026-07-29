@@ -2,7 +2,7 @@
 
 The blank-slate starting point in this kit: Pixi.js v8, React 19, Tailwind CSS v4, TypeScript, Vite, and the RundotGameAPI SDK wired together with the platform patterns already in place (SDK boot order, host lifecycles, per-player saves, design-unit stage, safe areas) — and no genre assumptions. A bouncing-sprite demo scene proves the whole pipeline; delete it and build your game.
 
-Start here when your game is not a runner or a launcher. If it is, use [`endless-runner-template`](../endless-runner-template/) or [`launcher-template`](../launcher-template/) instead — and either way, those two contain working systems you can copy into this one when you need them (audio + settings, leaderboard, shop, rewarded ads). More platform systems (daily rewards, IAP, quests, tutorial) are available as copy-in modules from the [`@series-inc/run-game-helpers`](https://www.npmjs.com/package/@series-inc/run-game-helpers) npm package. For platform details, see the [RUN.game developer docs](https://series-1.gitbook.io/rundot-docs).
+Start here when your game is not a runner or a launcher. If it is, use the runner template ([series-ai/cant-stop-now-runner](https://github.com/series-ai/cant-stop-now-runner)) or the launcher template ([series-ai/cant-stop-now-launcher](https://github.com/series-ai/cant-stop-now-launcher)) instead — and either way, those two contain working systems you can copy into this one when you need them (audio + settings, leaderboard, shop, rewarded ads). More platform systems (daily rewards, IAP, quests, tutorial) are available as copy-in modules from the [`@series-inc/run-game-helpers`](https://www.npmjs.com/package/@series-inc/run-game-helpers) npm package. For platform details, see the [RUN.game developer docs](https://series-1.gitbook.io/rundot-docs).
 
 ## Quick Start
 
@@ -63,3 +63,7 @@ All intended edit points carry `ADAPT:` comments — search the source for `ADAP
 - Use `RundotGameAPI.log()` for debug messages so they show up inside the RUN.game host.
 - Need storage, ads, haptics, or CDN helpers? The [RundotGameAPI docs](https://series-1.gitbook.io/rundot-docs) walk through every API with examples.
 - Jump into `src/game/demoScene.ts` to start remixing. Have fun ⚡️
+
+## Where This Template Is Developed
+
+This template lives in the Can't Stop Now Jam Kit monorepo and is published to [series-ai/cant-stop-now-bare-bones](https://github.com/series-ai/cant-stop-now-bare-bones) as a standalone read-only mirror (one-way sync: changes land in the jam kit and get pushed here, so don't commit to or open PRs against the mirror).
