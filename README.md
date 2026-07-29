@@ -63,7 +63,3 @@ All intended edit points carry `ADAPT:` comments — search the source for `ADAP
 - Use `RundotGameAPI.log()` for debug messages so they show up inside the RUN.game host.
 - Need storage, ads, haptics, or CDN helpers? The [RundotGameAPI docs](https://series-1.gitbook.io/rundot-docs) walk through every API with examples.
 - Jump into `src/game/demoScene.ts` to start remixing. Have fun ⚡️
-
-## Where This Template Is Developed
-
-This template lives in the Can't Stop Now Jam Kit monorepo and is published to [series-ai/cant-stop-now-bare-bones](https://github.com/series-ai/cant-stop-now-bare-bones) as a standalone read-only mirror (one-way sync: changes land in the jam kit and get pushed here, so don't commit to or open PRs against the mirror).
