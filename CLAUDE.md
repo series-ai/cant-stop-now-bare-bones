@@ -63,6 +63,31 @@ All intended edit points carry `ADAPT:` comments — search the source for `ADAP
 - Keep instructions short and imperative, one idea per line.
 - Minimum text size: 1.1rem (~17.6px). Never render player-facing text smaller unless explicitly asked, it is too small to read on most mobile devices. Tailwind's text-xs/text-sm are both below this floor; use text-[1.1rem] or larger instead.
 
+## AI Agent Recipes (complete checklists for common requests)
+
+After ANY recipe, run `npx tsc --noEmit` — the compiler catches leftovers (`noUnusedLocals` is on, so dead imports fail the build).
+
+**"Replace the demo scene with my game"**
+- Create `src/game/yourScene.ts` exporting `createYourScene(app, stage)` that returns `{ destroy() }` (remove the ticker callback and display objects there). Move the `Scene` interface into it — it currently lives in `demoScene.ts`. Position everything in design units.
+- `src/game/GameCanvas.tsx`: update the `createDemoScene`/`Scene` import and the `createDemoScene(app, stage)` call.
+- Delete `src/game/demoScene.ts`.
+- `src/state/store.ts`: replace the demo `score`/`best` fields with your game's UI-facing state; update their readers — `src/ui/Hud.tsx` (shows `score`, records the best on its Menu button) and `src/ui/MainMenu.tsx` (best readout, `score: 0` reset on Play).
+- `src/state/save.ts`: replace `best` + `recordBest()` with your persisted fields and mutations; patch them into the store in `main.tsx` step 2.
+- Keep the patterns: store patches on discrete events only (never per-frame), and the scene destroys everything it created.
+
+**"Add a persisted field (wallet, unlocks, settings, stats...)"**
+- `src/state/save.ts`: add the field to `SaveData`, `DEFAULTS`, and `parse()` (validate — corrupt or missing input must fall back to the default), plus a mutation that updates `data` and calls `flushSave()`, following `recordBest()`'s shape.
+- If the UI shows it: add it to `AppState` in `src/state/store.ts` (interface + initial state) and patch it at boot in `main.tsx` step 2.
+
+**"Add a screen (settings, shop, credits...)"**
+- `src/state/store.ts`: add the phase to the `phase` union.
+- Create `src/ui/YourScreen.tsx`; route it in `src/ui/App.tsx` (`phase === 'yourscreen'`); add an entry button that patches `phase` (e.g. in `MainMenu.tsx`) and a back button that patches it back.
+- Follow the UI Copy Style rules below; scrollable lists need `touch-pan-y` (the app frame locks `touch-action` for game input).
+
+**"Rename the game"** — `<title>` in index.html, headings in `MainMenu.tsx` + `LoadingScreen.tsx`, `name` in package.json, `SAVE_KEY` in `src/state/save.ts`.
+
+**"Add audio / a leaderboard / a shop / rewarded ads"** — copy the working system from `endless-runner-template` or `launcher-template` in this repo (each documents its own file list in its CLAUDE.md), or copy modules from the `@series-inc/run-game-helpers` npm package. Copy files in; never import that package at runtime.
+
 ## Verification (after scaffolding a game from this template)
 
 - `npm install` clean; `npm run dev` boots with no console errors (black cover → loading bar → menu; no white flash, no stuck black screen).
