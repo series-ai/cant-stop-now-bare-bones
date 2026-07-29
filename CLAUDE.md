@@ -48,7 +48,7 @@ rewards, IAP, quests, tutorial, and more).
 - **New small assets** → `public/images/`, listed in `src/assets/manifest.ts` (critical if needed before gameplay, deferred otherwise).
 - **New large/CDN assets** → `public/cdn-assets/`, loaded via `RundotGameAPI.cdn.fetchAsset()` (pattern in its README).
 - **UI screens / HUD** → React components in `src/ui/`, routed by phase in `App.tsx`; style with Tailwind; game-facing state through `store.patch()`.
-- **Title** → `<title>` in index.html + heading strings in `LoadingScreen.tsx` / `MainMenu.tsx` + `name` in package.json.
+- **Title** → `<title>` in index.html + heading strings in `LoadingScreen.tsx` / `MainMenu.tsx` + `name` in package.json + `SAVE_KEY` in `src/state/save.ts` (two games scaffolded from this template must not share a save key, or their localStorage saves collide in dev).
 - **Palette** → the `@theme` block in `src/styles/app.css`.
 - **Orientation** → portrait is default. For landscape: `rundot init --orientation Landscape` and adjust the 9:16 media query in `app.css` (see `ADAPT:`).
 - **Save/persistence** → extend `SaveData`/`parse()` in `src/state/save.ts` and patch the new fields in `main.tsx` step 2. The boot load and lifecycle flushes are already wired.
